@@ -1,3 +1,4 @@
+"use strict";
 /*Immutable*/
 
 // forEach
@@ -98,3 +99,103 @@ console.log("splice: ", arr3.splice(2, 1));
 console.log(arr3);
 
 /*Objects*/
+// init objects
+let someObject = {anyKey:"val"};
+let someAnotherObject = new Object();
+let oneMoreObject = Object.create(null);
+
+let childObject = Object.create(someObject);
+
+console.log('someObject: ', someObject);
+console.log('childObject: ', childObject);
+console.log('someAnotherObject: ', someAnotherObject);
+console.log('oneMoreObject: ', oneMoreObject);
+
+// add properties
+oneMoreObject.someKey = "val";
+someObject.key = "value";
+
+console.log('someObject: ', someObject);
+console.log('someAnotherObject: ', someAnotherObject);
+console.log('oneMoreObject: ', oneMoreObject);
+
+// delete - erase some property
+delete someObject.key;
+console.log('someObject: ', someObject);
+
+// in - check is property exist in object
+console.log("key" in someObject);
+console.log("anyKey" in someObject);
+
+console.log("childObject has property 'anyKey': ", "anyKey" in childObject);
+
+window.a = 1000;
+// this
+let obj = {
+	a: 10,
+	f
+};
+
+let obj2 = {
+	// a: 15,
+	f
+};
+
+function f() {
+	console.log(this.a);
+}
+
+obj.f();
+obj2.f();
+
+// f(); - don't do this ;)
+
+// call, apply
+// let obj3 = {a:10, b:"b", toString: `a:${this.a}, b:${this.b}`};
+// console.log(obj3 + "");
+console.log("" + []);
+console.log(2..toString());
+
+console.log(Object.prototype.toString.apply([]).slice(8, -1));
+
+// keys
+console.log(Object.keys(obj));
+
+// for in
+// for(let p in childObject) console.log("childObject prop: ", p);
+// for(let p in obj) console.log("obj prop: ", p);
+
+let obj4 = {
+	_a: "hello",
+	get a() {
+		return this._a;
+	},
+	set a(value) {
+		if(typeof value !== 'string') throw new TypeError("Should be a string");
+		this._a = value;
+		return this._a;
+	}
+};	
+
+console.log(obj4.a);
+obj4.a = "5";
+console.log(obj4.a);
+// try {
+// 	obj4.a = 10;
+// } catch(e){
+// 	console.error(e);
+// }
+
+console.log(obj4.a);
+
+// Descriptors
+// define property
+// Object.defineProperty(object, fieldName, {properties})
+Object.defineProperty(obj4, "a", {
+	value: "!", // default value
+	writable: false, // change value
+	enumerable: true, // for in
+	configurable: true //is property can be changed
+});
+obj4.a = "blah";
+console.log(obj4.a);
