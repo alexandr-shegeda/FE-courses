@@ -21,6 +21,10 @@
 ;(function(){
 
 	let personId = prompt("Enter personId:");
+	while(Number(personId) < 1 || Number(personId) > 87) {
+		alert("Person id is not correct. It's shoult be from 1 to 87");
+		personId = prompt("Enter personId:");
+	}
 
 	let res = fetch(`http://swapi.co/api/people/${personId}`)
 	.then(res => res.json())
