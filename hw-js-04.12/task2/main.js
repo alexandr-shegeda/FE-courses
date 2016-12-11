@@ -35,15 +35,15 @@
 		species = res.species;
 
 		let getFilms = films.map(film => fetch(film).then(res => res.json()));
-		return Promise.all(getFilms).then(res => ({name, species, films: res}));
+		let getSpecies = fetch(species[0]).then(res => res.json());
+		return Promise.all(getFilms).then(res => ({name, getSpecies, films: res}));
 	})
 	.then(function(res) {
 		let name = res.name,
 		films = res.films,
-		species = res.species;
+		species = res.getSpecies;
 
-		let getSpecies = fetch(species[0]).then(res => res.json());
-		return Promise.all([getSpecies]).then(res => ({name, films, species: res}));
+		return Promise.all([species]).then(res => ({name, films, species: res}));
 	})
 	.then(function(res) {
 		let name = res.name,
@@ -52,7 +52,6 @@
 		species = res.species[0].name;
 
 		let getPeopleList = res.species[0].people.map(people => fetch(people).then(res => res.json()));
-
 		return Promise.all(getPeopleList).then(res => ({name, lang, species, films, peopleList: res}));
 	})
 	.then(function(res) {
