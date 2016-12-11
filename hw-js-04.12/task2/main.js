@@ -62,6 +62,6 @@
 		peopleList = res.peopleList;
 
 		console.log(`Name: ${name}\nFilms: ${films.map(film => film.title).join(",")}\nSpecies: ${species}\nLanguage: ${lang}\nSame origin: ${peopleList.map(people => people.name).join(", ")}`);
-	});
+	})
 
 })();
