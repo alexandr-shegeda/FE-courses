@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lesson 10. WebSocket</title>
+	<meta charset="utf-8">
+
+</head>
+<body>
+
+	<h2>WebSocket Test</h2>
+
+	<div id="output"></div>
+
+	<button onclick="connect()" id="connectBtn">Connect</button>
+
+	<div id="messages-container">
+		
+	</div>
+
+	<form action="/" id="chat-form" style="visibility: visible">
+		<input type="text" id="message">
+		<span><button>Send</button></span>
+	</form>
+
+	<button id="disconnectBtn" style="visibility: hidden" onclick="disconnect()">Disconnect</button>
+
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	<!-- <script type="text/javascript" src="main.js"></script> -->
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
