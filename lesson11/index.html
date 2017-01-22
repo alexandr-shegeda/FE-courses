@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lesson 11. WebSocket</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+	<div class="chat-container">
+		<div id="login-form" style="align:center">
+			<input type="text" id="login" placeholder="Enter login">
+			<button id="loginBtn">Login</button>
+		</div>
+
+		<div id="messages-container">
+
+		</div>
+
+		<div id="gifs-container">
+			
+		</div>
+
+		<form hidden action="/" id="chat-form">
+			<input type="text" id="message" disabled>
+			<span><button id="sendBtn" disabled >Send</button></span>
+		</form>
+
+		<button id="disconnectBtn" hidden>Disconnect</button>
+	</div>
+
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
