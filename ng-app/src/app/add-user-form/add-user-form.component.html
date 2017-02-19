@@ -1,0 +1,30 @@
+<form (ngSubmit)="addUser()">
+	<div class="form-group">
+		<label for="name">Name:</label>
+		<input type="text" name="name" #name
+		required [(ngModel)]="user.name">
+
+	</div>
+
+	<div class="form-group">
+		<label for="age">Age:</label>
+		<input type="text" name="age" #age [(ngModel)]="user.age" required>
+	</div>
+
+	<div class="form-group">
+		<label for="role">Role:</label>
+		<select name="role" #role required [(ngModel)]="user.role" select="user.role">
+		<option *ngFor="let role of roles">{{role}}</option>
+	</select>
+</div>
+
+<div class="form-group">
+	<label>Gender:</label>
+	<label *ngFor="let g of genders" required>
+		<input type="radio" name="gender" [(ngModel)]="user.gender" #gender [value]="g.value">{{g.title}}
+	</label>
+</div>
+
+<button>Save</button>
+
+</form>

@@ -1,3 +1,15 @@
 <h1>
   {{title}}
 </h1>
+
+<add-user-form></add-user-form>
+
+
+<ul>
+	<li *ngFor='let user of users'>
+		<b>Name:</b>{{user.name}},
+		<b>Age:</b>{{user.age}},
+		<b>Role:</b>{{user.role}},
+		<b>Gender:</b>{{user.gender}};
+	</li>
+</ul>
