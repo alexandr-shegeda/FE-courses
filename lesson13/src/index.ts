@@ -1,9 +1,43 @@
-import {exportConst} from "./module.ts";
+// import {exportConst} from "./module.ts";
 
-import * as module from './module.ts';
+// import * as module from './module.ts';
 
+import {readonly} from "./module";
 
-console.log(exportConst);
+class MyObject {
+
+	public _name:string;
+
+	constructor(name: string) {
+		this._name = name;
+	}
+
+	@readonly({
+		descriptor: "enumerable",
+		value: false
+	})
+	@readonly()
+	getName() {
+		return this._name;
+	}
+
+}
+
+let o = new MyObject("Bob");
+
+console.log(o);
+
+console.log(o.getName());
+
+// o.getName = function() {return 'changed'};
+
+// console.log(o.getName());
+
+for(let prop in o) {
+	console.log(prop);
+}
+
+// console.log(exportConst);
 
 /**/
 // let obj = {name: 'Bill', age: 40};
@@ -106,9 +140,9 @@ console.log(exportConst);
 
 // for(let e of o) console.log(e);
 
-let str:string;
+// let str:string;
 
-str = "5";
+// str = "5";
 
 /*Types*/
 // boolean

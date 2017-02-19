@@ -86,7 +86,19 @@
 // 		this.name = name;
 // 	}
 // }
-exports.exportConst = 10;
+// export const exportConst = 10;
+function readonly(config) {
+    if (config === void 0) { config = {
+        descriptor: "writable",
+        value: false
+    }; }
+    console.log(config.descriptor, config.value);
+    return function (target, prop, descriptor) {
+        descriptor[config.descriptor] = config.value;
+        return descriptor;
+    };
+}
+exports.readonly = readonly;
 
 
 /***/ }),
@@ -94,9 +106,41 @@ exports.exportConst = 10;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+// import {exportConst} from "./module.ts";
 
-var module_ts_1 = __webpack_require__(0);
-console.log(module_ts_1.exportConst);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+// import * as module from './module.ts';
+var module_1 = __webpack_require__(0);
+var MyObject = (function () {
+    function MyObject(name) {
+        this._name = name;
+    }
+    MyObject.prototype.getName = function () {
+        return this._name;
+    };
+    return MyObject;
+}());
+__decorate([
+    module_1.readonly({
+        descriptor: "enumerable",
+        value: false
+    }),
+    module_1.readonly()
+], MyObject.prototype, "getName", null);
+var o = new MyObject("Bob");
+console.log(o);
+console.log(o.getName());
+// o.getName = function() {return 'changed'};
+// console.log(o.getName());
+for (var prop in o) {
+    console.log(prop);
+}
+// console.log(exportConst);
 /**/
 // let obj = {name: 'Bill', age: 40};
 // let {name, age} = obj;
@@ -166,8 +210,8 @@ console.log(module_ts_1.exportConst);
 // 	}
 // }
 // for(let e of o) console.log(e);
-var str;
-str = "5";
+// let str:string;
+// str = "5";
 /*Types*/
 // boolean
 // number

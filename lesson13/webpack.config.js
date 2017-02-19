@@ -7,6 +7,9 @@ module.exports = {
         path: path.resolve(__dirname + "/dist")
     },
 
+    resolve: {
+        extensions: ['.ts']
+    },
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
     

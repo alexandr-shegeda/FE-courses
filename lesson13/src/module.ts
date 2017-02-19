@@ -16,4 +16,17 @@
 // 	}
 // }
 
-export const exportConst = 10;
+// export const exportConst = 10;
+
+export function readonly(config = {
+	descriptor: "writable",
+	value: false
+	}) {
+
+	console.log(config.descriptor, config.value)
+	
+	return function (target, prop, descriptor) {
+		descriptor[config.descriptor] = config.value;
+		return descriptor;
+	}
+}
