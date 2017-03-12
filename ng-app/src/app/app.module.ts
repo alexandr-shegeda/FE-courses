@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { UserListService } from './services/user-list.service';
 import { AppComponent } from './app.component';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddUserFormComponent
+    AddUserFormComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
