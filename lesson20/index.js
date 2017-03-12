@@ -98,7 +98,7 @@ const myEmitter = new LUEmitter();
 
 // }, 100);
 
-const fs = require("fs");
+// const fs = require("fs");
 
 // fs.writeFile("test.txt", "Hello World", err => {
 // 	if(err) throw new Error("Ouch");
@@ -109,8 +109,26 @@ const fs = require("fs");
 // fs.appendFileSync("test.txt", "\r\nNew line 1");
 // fs.appendFileSync("test.txt", "\r\nNew line 2");
 
-fs.readFile("test.txt", {encoding: "utf8"}, (err, content) => {
-	if(err) throw err;
+// fs.readFile("test.txt", {encoding: "utf8"}, (err, content) => {
+// 	if(err) throw err;
 
-	console.log(content);
+// 	console.log(content);
+// });
+
+const net = require("net");
+
+const server = net.createServer((socket) => {
+	socket.on("connect", () => {
+		console.log("Connected: " + socket.remoteAddress + ":" + socket.remotePort);
+		socket.write("Connected");
+	});
+
+	socket.on("end", () => {
+		console.log("Disconnected: " + socket.remoteAddress + ":" + socket.remotePort)
+	});
+
+});
+
+server.listen(8080, () => {
+	console.log("Server started on 8080 port");
 })
